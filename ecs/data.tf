@@ -15,7 +15,7 @@ data "aws_ami" "latest_ecs" {
 }
 
 data "template_file" "ecs-cluster" {
-  template = file("java-demo-ecs-ec2/ecs/ecs-cluster.tpl")
+  template = file("java-demo/ecs/ecs-cluster.tpl")
 
   vars = {
     ecs_cluster = aws_ecs_cluster.java.name
