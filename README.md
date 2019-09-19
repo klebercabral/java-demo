@@ -13,3 +13,26 @@ docker build . -t klebercabral/gradle-sample-app:0.1.0
 docker login
 docker push klebercabral/gradle-sample-app:0.1.0
 ```
+
+## Provisionar em um AWS ECS com regras de Service Auto Scaling
+
+```bash
+git clone https://github.com/klebercabral/java-demo.git
+terraform init java-demo/ecs/
+terraform plan java-demo/ecs/
+terraform apply java-demo/ecs/
+```
+
+## Acionar uma ação de escalabilidade para do serviço
+
+Instalar o ab no Amazon Linux com o seguinte comando:
+
+```bash
+sudo yum install -y httpd24-tools
+```
+
+Execute o comando a seguir, substituindo o nome DNS do load balancer.
+
+```bash
+ab -n 100000 -c 1000 http://EC2Contai-EcsElast-SMAKV74U23PH-96652279.us-east-1.elb.amazonaws.com/
+```
