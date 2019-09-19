@@ -1,7 +1,7 @@
 #Criar nova VPC
 
 resource "aws_vpc" "java-tf" {
-  cidr_block           = "172.21.0/16"
+  cidr_block           = "172.21.0.0/16"
   instance_tenancy     = "default"
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
