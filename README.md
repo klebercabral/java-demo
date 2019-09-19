@@ -18,6 +18,7 @@ docker push klebercabral/gradle-sample-app:0.1.0
 
 ```bash
 git clone https://github.com/klebercabral/java-demo.git
+aws configure
 terraform init java-demo/ecs/
 terraform plan java-demo/ecs/
 terraform apply java-demo/ecs/
