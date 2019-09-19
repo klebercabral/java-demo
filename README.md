@@ -23,7 +23,7 @@ terraform plan java-demo/ecs/
 terraform apply java-demo/ecs/
 ```
 
-## Acionar uma ação de escalabilidade para do serviço
+## Acionar uma ação de escalabilidade para o serviço
 
 Instalar o ab no Amazon Linux com o seguinte comando:
 
