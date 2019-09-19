@@ -2,7 +2,7 @@
 
 Aplicação Java WEB [link para o projeto no github](https://github.com/codefresh-contrib/spring-boot-2-sample-app)
 
-## Criar uma multi-stage docker image
+## Criar uma multi-stage docker image e enviar para Docker Hub
 
 Para compilar e empacotar usando Docker multi-stage builds
 
