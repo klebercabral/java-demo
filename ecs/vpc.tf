@@ -1,3 +1,5 @@
+#Criar nova VPC
+
 resource "aws_vpc" "java-tf" {
   cidr_block           = "10.13.0/16"
   instance_tenancy     = "default"
@@ -10,6 +12,8 @@ resource "aws_vpc" "java-tf" {
   }
 }
 
+#Criar subnet publica
+
 resource "aws_subnet" "java-public-1" {
   vpc_id                  = aws_vpc.java-tf.id
   cidr_block              = "10.13.10.0/24"
@@ -20,6 +24,8 @@ resource "aws_subnet" "java-public-1" {
     Name = "java-public-1"
   }
 }
+
+#Criar subnet publica
 
 resource "aws_subnet" "java-public-2" {
   vpc_id                  = aws_vpc.java-tf.id
@@ -32,6 +38,8 @@ resource "aws_subnet" "java-public-2" {
   }
 }
 
+#Criar subnet publica
+
 resource "aws_subnet" "java-public-3" {
   vpc_id                  = aws_vpc.java-tf.id
   cidr_block              = "10.13.30.0/24"
@@ -42,6 +50,8 @@ resource "aws_subnet" "java-public-3" {
     Name = "java-public-3"
   }
 }
+
+#Criar subnet privada
 
 resource "aws_subnet" "java-private-1" {
   vpc_id                  = aws_vpc.java-tf.id
@@ -54,6 +64,8 @@ resource "aws_subnet" "java-private-1" {
   }
 }
 
+#Criar subnet privada
+
 resource "aws_subnet" "java-private-2" {
   vpc_id                  = aws_vpc.java-tf.id
   cidr_block              = "10.13.50.0/24"
@@ -64,6 +76,8 @@ resource "aws_subnet" "java-private-2" {
     Name = "java-private-2"
   }
 }
+
+#Criar subnet privada
 
 resource "aws_subnet" "java-private-3" {
   vpc_id                  = aws_vpc.java-tf.id
@@ -76,6 +90,8 @@ resource "aws_subnet" "java-private-3" {
   }
 }
 
+#Criar IGW
+
 resource "aws_internet_gateway" "java-gw" {
   vpc_id = aws_vpc.java-tf.id
 
@@ -83,6 +99,8 @@ resource "aws_internet_gateway" "java-gw" {
     Name = "java-IG"
   }
 }
+
+#Criar rota para IGW
 
 resource "aws_route_table" "java-public" {
   vpc_id = aws_vpc.java-tf.id
@@ -97,15 +115,21 @@ resource "aws_route_table" "java-public" {
   }
 }
 
+#Associar rota
+
 resource "aws_route_table_association" "java-public-1-a" {
   subnet_id      = aws_subnet.java-public-1.id
   route_table_id = aws_route_table.java-public.id
 }
 
+#Associar rota
+
 resource "aws_route_table_association" "java-public-2-a" {
   subnet_id      = aws_subnet.java-public-2.id
   route_table_id = aws_route_table.java-public.id
 }
+
+#Associar rota
 
 resource "aws_route_table_association" "java-public-3-a" {
   subnet_id      = aws_subnet.java-public-3.id

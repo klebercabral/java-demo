@@ -1,3 +1,5 @@
+#Selecao da AMI
+
 data "aws_ami" "latest_ecs" {
   most_recent = true
 
@@ -13,6 +15,8 @@ data "aws_ami" "latest_ecs" {
 
   owners = ["591542846629"]
 }
+
+#Script para config no boot do Cluster
 
 data "template_file" "ecs-cluster" {
   template = file("java-demo/ecs/ecs-cluster.tpl")

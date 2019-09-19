@@ -1,3 +1,5 @@
+#Configuracao do SG para liberar acesso as portas
+
 resource "aws_security_group" "lb_sg" {
   description = "controls access to the application ELB"
 
@@ -28,6 +30,8 @@ resource "aws_security_group" "lb_sg" {
     ]
   }
 }
+
+#Configuracao do SG para liberar acesso as portas
 
 resource "aws_security_group" "instance_sg" {
   description = "controls direct access to application instances"

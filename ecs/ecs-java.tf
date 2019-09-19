@@ -1,3 +1,5 @@
+#Configuracao do node do ECS
+
 resource "aws_ecs_service" "node" {
   name            = "gradle-sample-app"
   cluster         = aws_ecs_cluster.java.id
@@ -16,6 +18,8 @@ resource "aws_ecs_service" "node" {
     ignore_changes = [task_definition]
   }
 }
+
+#Configuracao da task do ECS
 
 resource "aws_ecs_task_definition" "node" {
   family = "node"
@@ -48,6 +52,8 @@ resource "aws_ecs_task_definition" "node" {
 EOF
 
 }
+
+#Configuracao do group de alarm no CloudWatch
 
 resource "aws_cloudwatch_log_group" "node" {
   name = "/ecs-java/node"

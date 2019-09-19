@@ -1,3 +1,5 @@
+#Configuracao das regras de autoscaling no service do ECS
+
 resource "aws_appautoscaling_target" "target" {
   service_namespace  = "ecs"
   resource_id        = "service/java/gradle-sample-app"
@@ -7,7 +9,8 @@ resource "aws_appautoscaling_target" "target" {
   max_capacity       = 6
 }
 
-# Automatically scale capacity up by one
+#Regra para aumentar carga automaticamente
+
 resource "aws_appautoscaling_policy" "up" {
   name               = "ecs_scale_up"
   service_namespace  = "ecs"
@@ -28,7 +31,8 @@ resource "aws_appautoscaling_policy" "up" {
   depends_on = [aws_appautoscaling_target.target]
 }
 
-# Automatically scale capacity down by one
+#Regra para diminuir carga automaticamente
+
 resource "aws_appautoscaling_policy" "down" {
   name               = "ecs_scale_down"
   service_namespace  = "ecs"
@@ -49,7 +53,8 @@ resource "aws_appautoscaling_policy" "down" {
   depends_on = [aws_appautoscaling_target.target]
 }
 
-# CloudWatch alarm that triggers the autoscaling up policy
+#Trigger do cloudwatch para disparar aumento no service autoscaling do ECS
+
 resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   alarm_name          = "cb_cpu_utilization_high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
@@ -68,7 +73,8 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   alarm_actions = [aws_appautoscaling_policy.up.arn]
 }
 
-# CloudWatch alarm that triggers the autoscaling down policy
+#Trigger do cloudwatch para disparar redução no service autoscaling do ECS
+
 resource "aws_cloudwatch_metric_alarm" "service_cpu_low" {
   alarm_name          = "cb_cpu_utilization_low"
   comparison_operator = "LessThanOrEqualToThreshold"

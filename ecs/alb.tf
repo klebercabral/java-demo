@@ -1,3 +1,5 @@
+#Criacao do ALB
+
 resource "aws_alb" "java_us_alb" {
   name            = "java-us-alb"
   subnets         = [aws_subnet.java-public-1.id, aws_subnet.java-public-2.id, aws_subnet.java-public-3.id]
@@ -6,9 +8,13 @@ resource "aws_alb" "java_us_alb" {
   idle_timeout    = 600
 }
 
+#Printar na tela a url do ALB
+
 output "alb_output" {
   value = aws_alb.java_us_alb.dns_name
 }
+
+#Configuracao do ALB para destino
 
 resource "aws_alb_listener" "front_end" {
   load_balancer_arn = aws_alb.java_us_alb.id
@@ -20,6 +26,8 @@ resource "aws_alb_listener" "front_end" {
     type             = "forward"
   }
 }
+
+#Criacao do destino do ALB e path de verificacao
 
 resource "aws_alb_target_group" "node" {
   name       = "node"

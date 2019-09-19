@@ -1,6 +1,10 @@
+#Configuracao do nome do Cluster
+
 resource "aws_ecs_cluster" "java" {
   name = "java"
 }
+
+#Configuracao do autoscaling
 
 resource "aws_autoscaling_group" "java-cluster" {
   name                      = "java-cluster"
@@ -20,6 +24,8 @@ resource "aws_autoscaling_group" "java-cluster" {
   }
 }
 
+#Configuracao das regras autoscaling
+
 resource "aws_autoscaling_policy" "java-cluster" {
   name                      = "java-ecs-auto-scaling"
   policy_type               = "TargetTrackingScaling"
@@ -35,6 +41,8 @@ resource "aws_autoscaling_policy" "java-cluster" {
     target_value = 40
   }
 }
+
+#Configuracao das instancias no autoscaling
 
 resource "aws_launch_configuration" "java-cluster-lc" {
   name_prefix     = "java-cluster-lc"
