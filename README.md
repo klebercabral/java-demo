@@ -9,7 +9,7 @@ Utilizei o Terraform state local, também devido ao custo, por exemplo se fosse 
 
 ## Criar uma multi-stage docker image e enviar para Docker Hub
 
-Para compilar e empacotar usando Docker multi-stage builds
+Para compilar e empacotar usando Docker multi-stage builds:
 
 ```bash
 git clone https://github.com/klebercabral/java-demo.git
